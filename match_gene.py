@@ -8,12 +8,16 @@
 import re
 import sys
 
+
 Id_geneLocation=0
 dic_geneAnnotation={}
 if len(sys.argv)>2:
 	Id_geneLocation=sys.argv[2]
 
-filename="gencode.v23.annotation.gene.probemap";input_file =open(filename)
+# filename="TCGA_data_geneList_data.tsv";
+filename="gencode.v23.annotation.gene.probemap";
+
+input_file =open(filename)
 reads=input_file. readline()
 while reads:
 	reads=re.sub(r'[\r\n]+','',reads)
@@ -57,9 +61,10 @@ while reads:
 		opt_file.write("\t"+dic_geneAnnotation[geneId])
 		opts_file.write(reads)
 		opts_file.write("\t"+dic_geneAnnotation[geneId])
+		opts_file.write("\n")
 		
 	opt_file.write("\n")
-	opts_file.write("\n")
+	
 	reads=input_file. readline()
 input_file.close()
 opt_file.close()
