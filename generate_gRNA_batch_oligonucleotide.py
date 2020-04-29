@@ -1,3 +1,4 @@
+# Python 3.7.5
 # python generate_gRNA_batch_oligonucleotide.py seq 2
 
 import sys,re	
