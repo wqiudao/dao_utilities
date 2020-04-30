@@ -4,7 +4,7 @@
 import sys,re	
 
 if len(sys.argv)<2:
-	print("python match_gene_v2.py sequence [barcodeId=1]")
+	print("python "+sys.argv[0]+" sequence [barcodeId=1]")
 	sys.exit(0)
  
 
