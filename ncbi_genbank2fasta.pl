@@ -1,3 +1,4 @@
+# perl 5, version 24, subversion 1 (v5.24.1)
 #Extraction information from genbank flatfiles 
 #从genbank文件中抽提信息，组成，fasta格式，UTR，CDS，等结果。    //
 # perl ncbi_genbank2fasta.pl GRCh38_latest_rna.gbff
