@@ -8,7 +8,7 @@ import re
 import sys
 
 if len(sys.argv)<2:
-	print("python match_gene_v2.py  <ref.annotation.tsv> input_file")
+	print("python "+sys.argv[0]+"  <ref.annotation.tsv> input_file")
 	sys.exit(0)
 
 
