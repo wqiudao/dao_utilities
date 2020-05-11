@@ -6,10 +6,13 @@
 # python match_gene_v2.py  01-Pancreas_Tcga_Sur_cox_Annotation.tsv 02-Pancreas_TcgaTargetGTEX_Annotation.tsv
 import re
 import sys
-
-if len(sys.argv)<2:
-	print("python "+sys.argv[0]+"  <ref.annotation.tsv> input_file")
+opt_nominate=2
+if len(sys.argv)<3:
+	print("python "+sys.argv[0]+"  <ref.annotation.tsv> input_file [opt_nominate=2]")
 	sys.exit(0)
+
+if len(sys.argv)>3:
+	opt_nominate=int(sys.argv[3])
 
 
 Id_geneLocation=0
@@ -31,8 +34,8 @@ input_file.close()
 print("Loading map file done...")
 
 filename=sys.argv[2];input_file =open(filename)
-opfname=re.sub(r'[\.\_]+[a-zA-Z0-9]+$','_Annotation.tsv',sys.argv[2]);opt_file =open(opfname,"w")
-opfname=re.sub(r'[\.\_]+[a-zA-Z0-9]+$','_Sel_Annotation.tsv',sys.argv[2]);opts_file =open(opfname,"w")
+opfname=re.sub(r'[\.\_]+[a-zA-Z0-9]+$','_Annotation.tsv',sys.argv[opt_nominate]);opt_file =open(opfname,"w")
+opfname=re.sub(r'[\.\_]+[a-zA-Z0-9]+$','_Sel_Annotation.tsv',sys.argv[opt_nominate]);opts_file =open(opfname,"w")
 
 reads=input_file. readline()
 reads=re.sub(r'[\r\n]+','',reads)
@@ -77,14 +80,5 @@ opt_file.close()
 opts_file.close()
 
 print("Mapping done...")
-
-
-
-
-
-
-
-
-
 
 
