@@ -10,23 +10,25 @@ opt_nominate=2
 if len(sys.argv)<3:
 	print("python "+sys.argv[0]+"  <ref.annotation.tsv> input_file [opt_nominate=2]")
 	sys.exit(0)
-
+opt_header=sys.argv[1]
 if len(sys.argv)>3:
 	opt_nominate=int(sys.argv[3])
+	opt_header=sys.argv[2]
 
 
 Id_geneLocation=0
 dic_geneAnnotation={}
 filename=sys.argv[1];
 input_file =open(filename)
-reads=input_file. readline()
+reads=input_file.readline()
 while reads:
 	reads=re.sub(r'[\r\n]+','',reads)
 	readset=re.split("\s+",reads) 	
+	readset[0]="\'"+readset[0]
 	readset[1]="\'"+readset[1]
 	geneId=re.sub(r'\.\S+','',readset[0])
 	reads="\t".join(readset)
-	geneId=re.sub(r'[\'\"]+','',geneId)
+	geneId=re.sub(r'[\'\"]+','',geneId).upper()
 	dic_geneAnnotation[geneId]=reads
 	reads=input_file. readline()
 input_file.close()
@@ -40,7 +42,7 @@ opfname=re.sub(r'[\.\_]+[a-zA-Z0-9]+$','_Sel_Annotation.tsv',sys.argv[opt_nomina
 reads=input_file. readline()
 reads=re.sub(r'[\r\n]+','',reads)
 readset=re.split("\s+",reads) 	
-geneId=re.sub(r'\.\S+','',readset[Id_geneLocation])
+geneId=re.sub(r'\.\S+','',readset[Id_geneLocation]).upper()
 opt_file.write(reads)
 if geneId in dic_geneAnnotation:
 	opts_file.write(reads)
@@ -48,8 +50,10 @@ if geneId in dic_geneAnnotation:
 	opt_file.write("\t"+dic_geneAnnotation[geneId])
 else:
 	opts_file.write(reads)
-	opt_file.write("\tid\tgene\tchrom\tchromStart\tchromEnd\tstrand")
-	opts_file.write("\tid\tgene\tchrom\tchromStart\tchromEnd\tstrand")
+	# opt_file.write("\tid\tgene\tchrom\tchromStart\tchromEnd\tstrand")
+	# opts_file.write("\tid\tgene\tchrom\tchromStart\tchromEnd\tstrand")	
+	opt_file.write("\t"+opt_header)
+	opts_file.write("\t"+opt_header)
 opt_file.write("\n")
 opts_file.write("\n")
 
@@ -62,8 +66,8 @@ while reads:
 	# print(readset[Id_geneLocation])
 	for geneIds in readgenes:
 		
-		geneId=re.sub(r'\.\S+','',geneIds)
-		geneId=re.sub(r'[\'\"]+','',geneId)	
+		geneId=re.sub(r'\.\S+','',geneIds).upper()
+		geneId=re.sub(r'[\'\"]+','',geneId).upper()	
 		# print(geneIds)
 		# print(geneId)
 		if geneId in dic_geneAnnotation:
@@ -80,5 +84,4 @@ opt_file.close()
 opts_file.close()
 
 print("Mapping done...")
-
 
