@@ -1,4 +1,5 @@
 # get_gRNA_from_batch_oligonucleotide
+# sgRNA_library_file_MAGeCK
 
 import sys,re	
 if len(sys.argv)<2:
@@ -28,6 +29,9 @@ while reads:
 		ofh.write(matchObj.group(2)+"\t")
 		ofhm.write("s_"+readset[0]+'_'+str(sgrna_count)+"\t")
 		ofhm.write(matchObj.group(2)+"\t")
+		readset[1]=re.sub(r'[\W\_]+','',readset[1])
+		# readset[1]=re.sub(r'^[\r\n\s\)\(]+','',readset[1])
+		# readset[1]=re.sub(r'[\r\n\s\)\(]+','_',readset[1])
 		ofhm.write(readset[1]+"\n")
 	else:
 		ofh.write("NA\t")
@@ -36,5 +40,4 @@ while reads:
 ofhm.close()	
 ofh.close()	
 input_file.close()
-
 
