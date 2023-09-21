@@ -1,1 +1,13 @@
+conda create --name tam_depletion_seq  -y
+conda activate tam_depletion_seq
+
+
+
+
+
+
+
+
+
+
 
