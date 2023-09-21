@@ -1,9 +1,14 @@
 conda create --name tam_depletion_seq  -y
 conda activate tam_depletion_seq
+git clone https://github.com/Zhanglab-IOZ/TnpB.git
+cd TnpB/tam_depletion_seq
+conda install -c anaconda python -y
+conda install mamba -c conda-forge -y
+
+# config.yaml
 
 
-
-
+snakemake --use-conda --cores all
 
 
 
