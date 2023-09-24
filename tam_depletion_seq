@@ -6,9 +6,46 @@ conda install -c anaconda python -y
 conda install mamba -c conda-forge -y
 
 # config.yaml
+修改配置文件，把fastq文件列表添加中
 
+
+
+# 修改 weblogo_plotdata.py
+# logo长度给成实验中的 8 ，两处，都要改
+logodata = weblogo.logo.LogoData(
+    counts=counts,
+    entropy=entropy,
+    entropy_interval=entropy_range,
+    length=5, alphabet=weblogo.seq.unambiguous_dna_alphabet , weight=numpy.array([1]*5))
+
+logodata = weblogo.logo.LogoData(
+    counts=counts,
+    entropy=entropy,
+    entropy_interval=entropy_range,
+    length=8, alphabet=weblogo.seq.unambiguous_dna_alphabet , weight=numpy.array([1]*10))
+
+
+
+
+
+# snakefile
+# 修改下面的语句（33行），其5表示序列长度，N，要根据实际情况，不如实验中是8个N，那就是8
+if(length($4)!=8) {{
+    $3 = "NA"
+    $4 = "NA"
+}}
+
+# 修改 64 行，去掉 | awk '$1~/[ATCG]{{5}}/'
+csvtk -tH freq -f 3 -k | awk '$1~/[ATCG]{{5}}/' > {output.counts:q}
+为
+csvtk -tH freq -f 3 -k  > {output.counts:q}
 
 snakemake --use-conda --cores all
+
+
+
+
+
 
 
 
