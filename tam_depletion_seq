@@ -12,6 +12,28 @@ cp config/config_example.yaml config/config.yaml
 修改配置文件，把fastq文件列表添加中
 
 
+# 直接用 tam_script_0926.zip压缩文件中，代替 workflow，默认的文件
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # 修改 weblogo_plotdata.py
 # logo长度给成实验中的 8 ，两处，都要改
