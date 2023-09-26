@@ -5,6 +5,9 @@ cd TnpB/tam_depletion_seq
 conda install -c anaconda python -y
 conda install mamba -c conda-forge -y
 
+cp config/config_example.yaml config/config.yaml
+
+
 # config.yaml
 修改配置文件，把fastq文件列表添加中
 
