@@ -65,6 +65,9 @@ csvtk -tH freq -f 3 -k | awk '$1~/[ATCG]{{5}}/' > {output.counts:q}
 为
 csvtk -tH freq -f 3 -k  > {output.counts:q}
 
+
+
+conda activate tam_depletion_seq
 snakemake --use-conda --cores all
 
 
